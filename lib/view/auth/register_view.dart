@@ -97,7 +97,7 @@ class RegisterView extends GetWidget<AuthViewModel> {
 
                   }
                 },
-                text: 'SIGN Up',
+                text: 'Sign Up',
               ),
               SizedBox(
                 height: 40,

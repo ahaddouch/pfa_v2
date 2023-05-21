@@ -45,6 +45,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                     child: CustomText(
                       text: "Sign Up",
                       color: primaryColor,
+
                       fontSize: 18,
                     ),
                   ),
@@ -93,6 +94,7 @@ class LoginView extends GetWidget<AuthViewModel> {
               ),
               CustomText(
                 text: 'Forgot Password?',
+                color: primaryColor,
                 fontSize: 14,
                 alignment: Alignment.topRight,
               ),
@@ -107,7 +109,8 @@ class LoginView extends GetWidget<AuthViewModel> {
 
                   }
                 },
-                text: 'SIGN IN',
+                text: 'Sign In',
+                color: Colors.blueAccent,
               ),
               SizedBox(
                 height: 40,
