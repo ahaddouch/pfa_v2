@@ -69,6 +69,7 @@ class HomeView extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar:bottomNavigationBar(),
     );
   }
 
@@ -183,6 +184,57 @@ class HomeView extends StatelessWidget {
         ),
       ),
     );
+  }
+  Widget bottomNavigationBar() {
+    return BottomNavigationBar(
+      items: [
+        BottomNavigationBarItem(
+          activeIcon: Padding(
+            padding: const EdgeInsets.only(top: 25.0),
+            child: Text('Home'),
+          ),
+            icon: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Image.asset(
+                  'assets/images/home.png',
+                fit: BoxFit.contain,
+                width: 30,
+              )
+                
+              ),
+            ),
+        BottomNavigationBarItem(
+          //activeIcon: Icon(Icons.home, color: Colors.blue),
+          icon: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(
+                'assets/images/home.png',
+                fit: BoxFit.contain,
+                width: 30,
+              )
+
+          ),
+        ),
+        BottomNavigationBarItem(
+          //activeIcon: Icon(Icons.home, color: Colors.blue),
+          icon: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(
+                'assets/images/home.png',
+                fit: BoxFit.contain,
+                width: 30,
+              )
+
+          ),
+        ),
+        ],
+      currentIndex: 0,
+      onTap: (index) {
+        if (index == 1) {
+          Get.to(LoginView());
+        }
+      },
+    )  ;
   }
 
 
