@@ -9,7 +9,7 @@ import '../widgets/custom_text_form_field.dart';
 import 'login_view.dart';
 
 class RegisterView extends GetWidget<AuthViewModel> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState>  _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class RegisterView extends GetWidget<AuthViewModel> {
               ),
               CustomTextFormField(
                 text: 'Name',
-                hint: 'Pesa',
+                hint: 'emsi',
                 onSave: (value) {
                   controller.name = value;
                 },
@@ -61,7 +61,7 @@ class RegisterView extends GetWidget<AuthViewModel> {
               ),
               CustomTextFormField(
                 text: 'Email',
-                hint: 'iamdavid@gmail.com',
+                hint: '3iir@gmail.com',
                 onSave: (value) {
                   controller.email = value;
                 },
@@ -87,14 +87,14 @@ class RegisterView extends GetWidget<AuthViewModel> {
                 },
               ),
               SizedBox(
-                height: 15,
+                height:  40,
               ),
               CustomButton(
                 onPress: () {
                   _formKey.currentState.save();
 
                   if (_formKey.currentState.validate()) {
-
+                    controller.signUpWithEmailAndPassword() ;
                   }
                 },
                 text: 'Sign Up',

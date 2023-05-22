@@ -26,9 +26,12 @@ class CustomButtonSocial extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(11),
           ),
+          alignment: Alignment.center,
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
             Image.asset(
               imageName,
               width: 24,  // Provide the desired width for the image
@@ -39,9 +42,11 @@ class CustomButtonSocial extends StatelessWidget {
             ),
             Text(
               text,
+
               style: TextStyle(
                 fontSize: 16, // Adjust the font size as per your preference
                 fontWeight: FontWeight.bold,
+
               ),
             ),
           ],

@@ -24,6 +24,7 @@ class CustomButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(11),
         ),
         padding: EdgeInsets.all(10),
+        backgroundColor: primaryColor,
 
       ),
 
@@ -32,7 +33,7 @@ class CustomButton extends StatelessWidget {
       child: CustomText(
         alignment: Alignment.center,
         text: text,
-        color: Colors.black,
+        color: secondaryColor,
       ),
     );
   }

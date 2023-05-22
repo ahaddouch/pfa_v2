@@ -1,11 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pfa_v2/view/auth/login_view.dart';
+import 'package:pfa_v2/view/widgets/custom_buttom.dart';
 import 'package:pfa_v2/view/widgets/custom_text.dart';
 
 import '../constance.dart';
 import '../core/view_model/home_view_model.dart';
 
 class HomeView extends StatelessWidget {
+  FirebaseAuth _auth = FirebaseAuth.instance;
   final List<String> names = <String>[
     'men',
     's',
@@ -20,7 +25,15 @@ class HomeView extends StatelessWidget {
         padding: EdgeInsets.only(top: 100, left: 20, right: 20),
         child: Column(
           children: [
+            CustomButton(
+              text: "Exit",
+              onPress: () {
+                _auth.signOut();
+                Get.offAll(LoginView());
+              },
+            ),
             _searchTextFormField(),
+
             SizedBox(
               height: 20,
             ),
@@ -169,4 +182,6 @@ class HomeView extends StatelessWidget {
       ),
     );
   }
+
+
 }

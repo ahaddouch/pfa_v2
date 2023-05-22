@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pfa_v2/view/auth/login_view.dart';
+import 'package:pfa_v2/view/control_view.dart';
 import 'package:pfa_v2/view/home_view.dart';
 
 import 'helper/binding.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialBinding: Binding(),
       home: Scaffold(
-        body:HomeView(),
+        body: ControlView(),
       ),
       theme: ThemeData(
         fontFamily: 'SourceSans',

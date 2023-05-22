@@ -23,13 +23,13 @@ class LoginView extends GetWidget<AuthViewModel> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(
-          top: 50,
+          top: 30,
           right: 20,
           left: 20,
         ),
         child: Form(
           key: _formKey,
-          child: Column(
+          child:  Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -64,7 +64,7 @@ class LoginView extends GetWidget<AuthViewModel> {
               ),
               CustomTextFormField(
                 text: 'Email',
-                hint: 'iamdavid@gmail.com',
+                hint: 'exemple@emsi.com',
                 onSave: (value) {
                   controller.email = value;
                 },
@@ -106,7 +106,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                   _formKey.currentState.save();
 
                   if (_formKey.currentState.validate()) {
-
+                    controller.signInWithEmailAndPassword();
                   }
                 },
                 text: 'Sign In',
@@ -136,6 +136,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                 text: 'Sign In with Google',
                 onPress: () {
                   controller.googleSignInMethod();
+
                 },
                 imageName: 'assets/images/google.png',
               ),
