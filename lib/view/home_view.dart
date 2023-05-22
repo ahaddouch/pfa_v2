@@ -13,17 +13,18 @@ class HomeView extends StatelessWidget {
   FirebaseAuth _auth = FirebaseAuth.instance;
   final List<String> names = <String>[
     'men',
-    's',
-    's',
-    's',
-    's',
+    'Electro',
+    'clothes',
+    'xxx',
+    'yyy',
   ];
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         padding: EdgeInsets.only(top: 100, left: 20, right: 20),
-        child: Column(
+        child: ListView(
           children: [
             CustomButton(
               text: "Exit",
@@ -33,6 +34,7 @@ class HomeView extends StatelessWidget {
               },
             ),
             _searchTextFormField(),
+
 
             SizedBox(
               height: 20,
@@ -106,7 +108,7 @@ class HomeView extends StatelessWidget {
                 width: 60,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.asset('assets/images/Icon_Mens Shoe.png'),
+                  child: Image.asset('assets/images/vide2.png'),
                 ),
               ),
               SizedBox(
@@ -145,7 +147,7 @@ class HomeView extends StatelessWidget {
                       height: 220,
                       width: MediaQuery.of(context).size.width * .4,
                       child: Image.asset(
-                        'assets/images/Image.png',
+                        'assets/images/vide1.png',
                         fit: BoxFit.fill,
                       )),
                 ),
@@ -153,14 +155,14 @@ class HomeView extends StatelessWidget {
                   height: 20,
                 ),
                 CustomText(
-                  text: "BeoPlay Speaker",
+                  text: "Just for test",
                   alignment: Alignment.bottomLeft,
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 CustomText(
-                  text: "Bang and Olufsen",
+                  text: "test test test",
                   color: Colors.grey,
                   alignment: Alignment.bottomLeft,
                 ),
@@ -168,7 +170,7 @@ class HomeView extends StatelessWidget {
                   height: 20,
                 ),
                 CustomText(
-                  text: "\$755",
+                  text: "\$999",
                   color: primaryColor,
                   alignment: Alignment.bottomLeft,
                 ),

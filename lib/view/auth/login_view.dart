@@ -29,7 +29,7 @@ class LoginView extends GetWidget<AuthViewModel> {
         ),
         child: Form(
           key: _formKey,
-          child:  Column(
+          child:  ListView(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

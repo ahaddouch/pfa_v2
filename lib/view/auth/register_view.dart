@@ -35,7 +35,7 @@ class RegisterView extends GetWidget<AuthViewModel> {
         ),
         child: Form(
           key: _formKey,
-          child: Column(
+          child: ListView(
             children: [
               CustomText(
                 text: "Sign Up,",
