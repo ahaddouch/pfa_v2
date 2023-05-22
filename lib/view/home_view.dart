@@ -19,7 +19,6 @@ class HomeView extends StatelessWidget {
     'yyy',
   ];
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -34,8 +33,6 @@ class HomeView extends StatelessWidget {
               },
             ),
             _searchTextFormField(),
-
-
             SizedBox(
               height: 20,
             ),
@@ -69,7 +66,7 @@ class HomeView extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar:bottomNavigationBar(),
+      bottomNavigationBar: bottomNavigationBar(),
     );
   }
 
@@ -185,57 +182,78 @@ class HomeView extends StatelessWidget {
       ),
     );
   }
+
   Widget bottomNavigationBar() {
-    return BottomNavigationBar(
-      items: [
-        BottomNavigationBarItem(
-          activeIcon: Padding(
-            padding: const EdgeInsets.only(top: 25.0),
-            child: Text('Home'),
-          ),
-            icon: Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Image.asset(
-                  'assets/images/home.png',
-                fit: BoxFit.contain,
-                width: 30,
-              )
-                
-              ),
-            ),
-        BottomNavigationBarItem(
-          //activeIcon: Icon(Icons.home, color: Colors.blue),
-          icon: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset(
-                'assets/images/home.png',
-                fit: BoxFit.contain,
-                width: 30,
-              )
-
-          ),
-        ),
-        BottomNavigationBarItem(
-          //activeIcon: Icon(Icons.home, color: Colors.blue),
-          icon: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset(
-                'assets/images/home.png',
-                fit: BoxFit.contain,
-                width: 30,
-              )
-
-          ),
-        ),
-        ],
-      currentIndex: 0,
-      onTap: (index) {
-        if (index == 1) {
-          Get.to(LoginView());
-        }
-      },
-    )  ;
+    return GetBuilder<HomeViewModel>(
+        init: HomeViewModel(),
+        builder: (controller) => BottomNavigationBar(
+              items: [
+                BottomNavigationBarItem(
+                  activeIcon: Padding(
+                    padding: const EdgeInsets.only(top: 25.0),
+                    child: Text(
+                      'Home',
+                      style: TextStyle(
+                        color: primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  label: '',
+                  icon: Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Image.asset(
+                      'assets/images/home.png',
+                      fit: BoxFit.contain,
+                      width: 30,
+                    ),
+                  ),
+                ),
+                BottomNavigationBarItem(
+                  activeIcon: Padding(
+                    padding: const EdgeInsets.only(top: 25.0),
+                    child: Text(
+                      'Profile',
+                      style: TextStyle(
+                        color: primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  label: '',
+                  icon: Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Image.asset(
+                        'assets/images/profile.png',
+                        fit: BoxFit.contain,
+                        width: 30,
+                      )),
+                ),
+                BottomNavigationBarItem(
+                  activeIcon: Padding(
+                    padding: const EdgeInsets.only(top: 25.0),
+                    child: Text(
+                      'Cart',
+                      style: TextStyle(
+                        color: primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  label: '',
+                  icon: Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Image.asset(
+                        'assets/images/cart.png',
+                        fit: BoxFit.contain,
+                        width: 30,
+                      )),
+                ),
+              ],
+              currentIndex: controller.navigatorValue,
+              onTap: (index) => {
+                controller.changeSelectedValue(index),
+              },
+            ));
   }
-
-
 }
