@@ -230,7 +230,9 @@ class HomeView extends StatelessWidget {
         ],
       currentIndex: 0,
       onTap: (index) {
-
+        if (index == 1) {
+          Get.to(LoginView());
+        }
       },
     )  ;
   }
