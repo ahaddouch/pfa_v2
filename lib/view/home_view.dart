@@ -1,81 +1,77 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pfa_v2/core/view_model/home_view_model.dart';
-import 'package:pfa_v2/view/auth/login_view.dart';
-import 'package:pfa_v2/view/cart_view.dart';
-import 'package:pfa_v2/view/widgets/custom_buttom.dart';
 import 'package:pfa_v2/view/widgets/custom_text.dart';
+
 import '../constance.dart';
 import '../core/view_model/control_view_model.dart';
+import '../core/view_model/home_view_model.dart';
+import 'cart_view.dart';
 import 'details_view.dart';
 
 class HomeView extends StatelessWidget {
-  FirebaseAuth _auth = FirebaseAuth.instance;
   final List<String> names = <String>[
     'men',
-    'Electro',
-    'clothes',
-    'xxx',
-    'yyy',
+    's',
+    's',
+    's',
+    's',
+    's',
+    's',
   ];
+
+  HomeView({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeViewModel>(
       init: Get.find(),
       builder: (controller) => controller.loading.value
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : Scaffold(
-              body: SingleChildScrollView(
-                child: Container(
-                  padding: EdgeInsets.only(top: 100, left: 20, right: 20),
-                  child: ListView(
-                    children: [
-                      CustomButton(
-                        text: "Exit",
-                        onPress: () {
-                          _auth.signOut();
-                          Get.offAll(LoginView());
-                        },
-                      ),
-                      _searchTextFormField(),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CustomText(
-                        text: "Categories",
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      _listViewCategory(),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CustomText(
-                            text: "Best Selling",
-                            fontSize: 18,
-                          ),
-                          CustomText(
-                            text: "See all",
-                            fontSize: 16,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      _listViewProducts(),
-                    ],
-                  ),
+        body: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.only(top: 100, left: 20, right: 20),
+            child: Column(
+              children: [
+                _searchTextFormField(),
+                const SizedBox(
+                  height: 30,
                 ),
-              ),
-              bottomNavigationBar: bottomNavigationBar(),
+                 CustomText(
+                  text: "Categories",
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                _listViewCategory(),
+                const SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children:  [
+                    CustomText(
+                      text: "Best Selling",
+                      fontSize: 18,
+
+                    ),
+                    CustomText(
+                      text: "See all",
+                      fontSize: 16,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                _listViewProducts(),
+              ],
             ),
+          ),
+        ),
+        bottomNavigationBar: bottomNavigationBar(),
+      ),
     );
   }
 
@@ -86,7 +82,7 @@ class HomeView extends StatelessWidget {
         color: Colors.grey.shade200,
       ),
       child: TextFormField(
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           border: InputBorder.none,
           prefixIcon: Icon(
             Icons.search,
@@ -99,7 +95,7 @@ class HomeView extends StatelessWidget {
 
   Widget _listViewCategory() {
     return GetBuilder<HomeViewModel>(
-      builder: (controller) => Container(
+      builder: (controller) => SizedBox(
         height: 100,
         child: ListView.separated(
           itemCount: controller.categoryModel.length,
@@ -119,7 +115,7 @@ class HomeView extends StatelessWidget {
                     child: Image.network(controller.categoryModel[index].image),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 CustomText(
@@ -128,7 +124,7 @@ class HomeView extends StatelessWidget {
               ],
             );
           },
-          separatorBuilder: (context, index) => SizedBox(
+          separatorBuilder: (context, index) => const SizedBox(
             width: 20,
           ),
         ),
@@ -204,11 +200,11 @@ class HomeView extends StatelessWidget {
       ),
     );
   }
-
   Widget bottomNavigationBar() {
     return GetBuilder<ControlViewModel>(
         init: ControlViewModel(),
-        builder: (controller) => BottomNavigationBar(
+        builder: (controller) =>
+            BottomNavigationBar(
               items: [
                 BottomNavigationBarItem(
                   activeIcon: Padding(
@@ -273,7 +269,8 @@ class HomeView extends StatelessWidget {
                 ),
               ],
               currentIndex: controller.navigatorValue,
-              onTap: (index) => {
+              onTap: (index) =>
+              {
                 controller.changeSelectedValue(index),
                 if (index == 1) {Get.to(CartView())},
                 if (index == 2) {Get.to(CartView())},
@@ -281,4 +278,5 @@ class HomeView extends StatelessWidget {
               },
             ));
   }
+
 }
