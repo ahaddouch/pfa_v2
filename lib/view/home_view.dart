@@ -7,7 +7,6 @@ import 'package:pfa_v2/view/auth/login_view.dart';
 import 'package:pfa_v2/view/cart_view.dart';
 import 'package:pfa_v2/view/widgets/custom_buttom.dart';
 import 'package:pfa_v2/view/widgets/custom_text.dart';
-
 import '../constance.dart';
 import '../core/view_model/control_view_model.dart';
 import 'details_view.dart';
@@ -139,19 +138,19 @@ class HomeView extends StatelessWidget {
 
   Widget _listViewProducts() {
     return GetBuilder<HomeViewModel>(
-      builder: (controller) => Container(
+      builder: (controller) => SizedBox(
         height: 350,
         child: ListView.separated(
           itemCount: controller.productModel.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return GestureDetector(
-              onTap: (){
+              onTap: () {
                 Get.to(DetailsView(
                   model: controller.productModel[index],
                 ));
               },
-              child: Container(
+              child: SizedBox(
                 width: MediaQuery.of(context).size.width * .4,
                 child: Column(
                   children: [
@@ -160,7 +159,7 @@ class HomeView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(50),
                         color: Colors.grey.shade100,
                       ),
-                      child: Container(
+                      child: SizedBox(
                           height: 220,
                           width: MediaQuery.of(context).size.width * .4,
                           child: Image.network(
@@ -168,14 +167,14 @@ class HomeView extends StatelessWidget {
                             fit: BoxFit.fill,
                           )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     CustomText(
                       text: controller.productModel[index].name,
                       alignment: Alignment.bottomLeft,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Expanded(
@@ -183,15 +182,13 @@ class HomeView extends StatelessWidget {
                         text: controller.productModel[index].description,
                         color: Colors.grey,
                         alignment: Alignment.bottomLeft,
-                        maxLine: 1,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     CustomText(
-                      text: controller.productModel[index].price.toString() +
-                          "  \$",
+                      text: "${controller.productModel[index].price} \$",
                       color: primaryColor,
                       alignment: Alignment.bottomLeft,
                     ),
@@ -200,7 +197,7 @@ class HomeView extends StatelessWidget {
               ),
             );
           },
-          separatorBuilder: (context, index) => SizedBox(
+          separatorBuilder: (context, index) => const SizedBox(
             width: 20,
           ),
         ),
@@ -278,7 +275,9 @@ class HomeView extends StatelessWidget {
               currentIndex: controller.navigatorValue,
               onTap: (index) => {
                 controller.changeSelectedValue(index),
-                if (index == 1) {Get.to(CartView())}
+                if (index == 1) {Get.to(CartView())},
+                if (index == 2) {Get.to(CartView())},
+                if (index == 0) {Get.to(HomeView())},
               },
             ));
   }
