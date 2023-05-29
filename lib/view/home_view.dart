@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pfa_v2/view/profile_view.dart';
 import 'package:pfa_v2/view/widgets/custom_text.dart';
 
 import '../constance.dart';
@@ -272,7 +273,7 @@ class HomeView extends StatelessWidget {
               onTap: (index) =>
               {
                 controller.changeSelectedValue(index),
-                if (index == 1) {Get.to(CartView())},
+                if (index == 1) {Get.to(ProfileView())},
                 if (index == 2) {Get.to(CartView())},
                 if (index == 0) {Get.to(HomeView())},
               },
