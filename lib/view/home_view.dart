@@ -10,6 +10,7 @@ import 'package:pfa_v2/view/widgets/custom_text.dart';
 
 import '../constance.dart';
 import '../core/view_model/control_view_model.dart';
+import 'details_view.dart';
 
 class HomeView extends StatelessWidget {
   FirebaseAuth _auth = FirebaseAuth.instance;
@@ -23,54 +24,59 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeViewModel>(
-      builder: (controller) => controller.loading.value ? Center(child: CircularProgressIndicator()) : Scaffold(
-        body: Container(
-          padding: EdgeInsets.only(top: 100, left: 20, right: 20),
-          child: ListView(
-            children: [
-              CustomButton(
-                text: "Exit",
-                onPress: () {
-                  _auth.signOut();
-                  Get.offAll(LoginView());
-                },
-              ),
-              _searchTextFormField(),
-              SizedBox(
-                height: 20,
-              ),
-              CustomText(
-                text: "Categories",
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              _listViewCategory(),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CustomText(
-                    text: "Best Selling",
-                    fontSize: 18,
+      init: Get.find(),
+      builder: (controller) => controller.loading.value
+          ? Center(child: CircularProgressIndicator())
+          : Scaffold(
+              body: SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.only(top: 100, left: 20, right: 20),
+                  child: ListView(
+                    children: [
+                      CustomButton(
+                        text: "Exit",
+                        onPress: () {
+                          _auth.signOut();
+                          Get.offAll(LoginView());
+                        },
+                      ),
+                      _searchTextFormField(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      CustomText(
+                        text: "Categories",
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _listViewCategory(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CustomText(
+                            text: "Best Selling",
+                            fontSize: 18,
+                          ),
+                          CustomText(
+                            text: "See all",
+                            fontSize: 16,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _listViewProducts(),
+                    ],
                   ),
-                  CustomText(
-                    text: "See all",
-                    fontSize: 16,
-                  ),
-                ],
+                ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              _listViewProducts(),
-            ],
-          ),
-        ),
-        bottomNavigationBar: bottomNavigationBar(),
-      ),
+              bottomNavigationBar: bottomNavigationBar(),
+            ),
     );
   }
 
@@ -132,58 +138,71 @@ class HomeView extends StatelessWidget {
   }
 
   Widget _listViewProducts() {
-    return Container(
-      height: 350,
-      child: ListView.separated(
-        itemCount: names.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return Container(
-            width: MediaQuery.of(context).size.width * .4,
-            child: Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.grey.shade100,
-                  ),
-                  child: Container(
-                      height: 220,
-                      width: MediaQuery.of(context).size.width * .4,
-                      child: Image.asset(
-                        'assets/images/vide1.png',
-                        fit: BoxFit.fill,
-                      )),
+    return GetBuilder<HomeViewModel>(
+      builder: (controller) => Container(
+        height: 350,
+        child: ListView.separated(
+          itemCount: controller.productModel.length,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: (){
+                Get.to(DetailsView(
+                  model: controller.productModel[index],
+                ));
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width * .4,
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.grey.shade100,
+                      ),
+                      child: Container(
+                          height: 220,
+                          width: MediaQuery.of(context).size.width * .4,
+                          child: Image.network(
+                            controller.productModel[index].image,
+                            fit: BoxFit.fill,
+                          )),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    CustomText(
+                      text: controller.productModel[index].name,
+                      alignment: Alignment.bottomLeft,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Expanded(
+                      child: CustomText(
+                        text: controller.productModel[index].description,
+                        color: Colors.grey,
+                        alignment: Alignment.bottomLeft,
+                        maxLine: 1,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    CustomText(
+                      text: controller.productModel[index].price.toString() +
+                          "  \$",
+                      color: primaryColor,
+                      alignment: Alignment.bottomLeft,
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                CustomText(
-                  text: "Just for test",
-                  alignment: Alignment.bottomLeft,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                CustomText(
-                  text: "test test test",
-                  color: Colors.grey,
-                  alignment: Alignment.bottomLeft,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                CustomText(
-                  text: "\$999",
-                  color: primaryColor,
-                  alignment: Alignment.bottomLeft,
-                ),
-              ],
-            ),
-          );
-        },
-        separatorBuilder: (context, index) => SizedBox(
-          width: 20,
+              ),
+            );
+          },
+          separatorBuilder: (context, index) => SizedBox(
+            width: 20,
+          ),
         ),
       ),
     );
@@ -264,5 +283,3 @@ class HomeView extends StatelessWidget {
             ));
   }
 }
-
-
