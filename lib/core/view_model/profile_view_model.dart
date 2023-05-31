@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pfa_v2/helper/local_storage_data.dart';
 
-class Profile extends GetxController{
+class ProfileViewModel extends GetxController{
 
     final LocalStorageData localStorageData = Get.find();
 

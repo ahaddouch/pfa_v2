@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:pfa_v2/helper/local_storage_data.dart';
 import 'package:pfa_v2/model/user_model.dart';
 
+import '../../view/control_view.dart';
 import '../../view/home_view.dart';
 import '../service/firestore_user.dart';
 
@@ -19,6 +21,8 @@ class AuthViewModel extends GetxController {
   Rx<User> _user = Rx<User>();
 
   String get user => _user.value?.email;
+
+  final LocalStorageData localStorageData = Get.find();
 
   @override
   void onInit() {
@@ -52,14 +56,18 @@ class AuthViewModel extends GetxController {
 
     await _auth.signInWithCredential(credential).then((user) {
       saveUser(user);
-      Get.offAll(HomeView());
+      Get.offAll(ControlView());
     });
 
   }
   void signInWithEmailAndPassword() async {
     try {
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
-      Get.offAll(HomeView());
+      await _auth.signInWithEmailAndPassword(email: email, password: password).then((value)async{
+        await FireStoreUser().getCurrentUser(value.user.uid).then((value){
+          setUser(UserModel.fromJson(value.data()));
+        });
+      });
+      Get.offAll(ControlView());
     } catch (e) {
       print(e.message);
       Get.snackbar("Error login account", e.message,
@@ -81,11 +89,23 @@ class AuthViewModel extends GetxController {
     }
   }
   void saveUser(UserCredential user) async {
-    await FireStoreUser().addUserToFireStore(UserModel(
+    UserModel userModel = UserModel(
       userId: user.user.uid,
       email: user.user.email,
       name: name ?? user.user.displayName,
       pic: '',
-    ));
+    );
+    await FireStoreUser().addUserToFireStore(userModel);
+    setUser(userModel);
+    // await FireStoreUser().addUserToFireStore(UserModel(
+    //   userId: user.user.uid,
+    //   email: user.user.email,
+    //   name: name ?? user.user.displayName,
+    //   pic: '',
+    // ));
+  }
+
+  void setUser(UserModel userModel)async{
+    localStorageData.setUser(userModel);
   }
 }
