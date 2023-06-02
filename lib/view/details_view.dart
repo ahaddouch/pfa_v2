@@ -148,7 +148,7 @@ class DetailsView extends StatelessWidget {
                             quantity: 1,
                           ),
                         ),
-                        text: 'ADD',
+                        text:  'ADD',
                       ),
                     ),
                   ),
