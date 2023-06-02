@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:pfa_v2/constance.dart';
+import 'package:pfa_v2/core/view_model/cart_view_model.dart';
 import 'package:pfa_v2/view/widgets/custom_buttom.dart';
 import 'package:pfa_v2/view/widgets/custom_text.dart';
+import '../model/cart_product_model.dart';
 import '../model/product_model.dart';
 
 class DetailsView extends StatelessWidget {
@@ -130,13 +133,23 @@ class DetailsView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Container(
-                    padding: EdgeInsets.all(20),
-                    width: 180,
-                    height: 100,
-                    child: CustomButton(
-                      onPress: () {},
-                      text: 'ADD',
+                  GetBuilder<CartViewModel>(
+                    init: CartViewModel(),
+                    builder:(controller)=> Container(
+                      padding: EdgeInsets.all(20),
+                      width: 180,
+                      height: 100,
+                      child: CustomButton(
+                        onPress: controller.addProduct(
+                          CartProductModel(
+                            name: model.name,
+                            image: model.image,
+                            price: model.price,
+                            quantity: 1,
+                          ),
+                        ),
+                        text: 'ADD',
+                      ),
                     ),
                   ),
                 ],

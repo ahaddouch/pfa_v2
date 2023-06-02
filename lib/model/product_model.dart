@@ -13,8 +13,8 @@ class ProductModel {
       this.size,
       this.price});
 
-  ProductModel.fromJson(Map<dynamic, dynamic> map){
-    if(map == null) {
+  ProductModel.fromJson(Map<dynamic, dynamic> map) {
+    if (map == null) {
       return;
     }
     name = map['name'];
@@ -25,14 +25,14 @@ class ProductModel {
     price = map['price'];
   }
 
-  toJson(){
+  toJson() {
     return {
-      'name' : name,
-      'image' : image,
-      'description' : description,
-      'color' : color,
-      'size' : size,
-      'price' : price,
+      'name': name,
+      'image': image,
+      'description': description,
+      'color': color,
+      'size': size,
+      'price': price,
     };
   }
 }

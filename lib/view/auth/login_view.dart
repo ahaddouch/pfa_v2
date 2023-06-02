@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pfa_v2/view/auth/register_view.dart';
@@ -29,7 +28,7 @@ class LoginView extends GetWidget<AuthViewModel> {
         ),
         child: Form(
           key: _formKey,
-          child:  ListView(
+          child: ListView(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,7 +44,6 @@ class LoginView extends GetWidget<AuthViewModel> {
                     child: CustomText(
                       text: "Sign Up",
                       color: primaryColor,
-
                       fontSize: 18,
                     ),
                   ),
@@ -124,9 +122,7 @@ class LoginView extends GetWidget<AuthViewModel> {
               ),
               CustomButtonSocial(
                 text: 'Sign In with Facebook',
-                onPress: () {
-
-                },
+                onPress: () {},
                 imageName: 'assets/images/facebook.png',
               ),
               SizedBox(
@@ -136,7 +132,6 @@ class LoginView extends GetWidget<AuthViewModel> {
                 text: 'Sign In with Google',
                 onPress: () {
                   controller.googleSignInMethod();
-
                 },
                 imageName: 'assets/images/google.png',
               ),

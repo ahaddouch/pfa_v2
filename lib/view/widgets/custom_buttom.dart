@@ -25,11 +25,8 @@ class CustomButton extends StatelessWidget {
         ),
         padding: EdgeInsets.all(10),
         backgroundColor: primaryColor,
-
       ),
-
       onPressed: onPress,
-
       child: CustomText(
         alignment: Alignment.center,
         text: text,

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pfa_v2/view/profile_view.dart';
@@ -30,49 +29,48 @@ class HomeView extends StatelessWidget {
       builder: (controller) => controller.loading.value
           ? const Center(child: CircularProgressIndicator())
           : Scaffold(
-        body: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.only(top: 100, left: 20, right: 20),
-            child: Column(
-              children: [
-                _searchTextFormField(),
-                const SizedBox(
-                  height: 30,
+              body: SingleChildScrollView(
+                child: Container(
+                  padding: const EdgeInsets.only(top: 100, left: 20, right: 20),
+                  child: Column(
+                    children: [
+                      _searchTextFormField(),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      CustomText(
+                        text: "Categories",
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      _listViewCategory(),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CustomText(
+                            text: "Best Selling",
+                            fontSize: 18,
+                          ),
+                          CustomText(
+                            text: "See all",
+                            fontSize: 16,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      _listViewProducts(),
+                    ],
+                  ),
                 ),
-                 CustomText(
-                  text: "Categories",
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                _listViewCategory(),
-                const SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children:  [
-                    CustomText(
-                      text: "Best Selling",
-                      fontSize: 18,
-
-                    ),
-                    CustomText(
-                      text: "See all",
-                      fontSize: 16,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                _listViewProducts(),
-              ],
+              ),
+              bottomNavigationBar: bottomNavigationBar(),
             ),
-          ),
-        ),
-        bottomNavigationBar: bottomNavigationBar(),
-      ),
     );
   }
 
@@ -201,11 +199,11 @@ class HomeView extends StatelessWidget {
       ),
     );
   }
+
   Widget bottomNavigationBar() {
     return GetBuilder<ControlViewModel>(
         init: ControlViewModel(),
-        builder: (controller) =>
-            BottomNavigationBar(
+        builder: (controller) => BottomNavigationBar(
               items: [
                 BottomNavigationBarItem(
                   activeIcon: Padding(
@@ -270,8 +268,7 @@ class HomeView extends StatelessWidget {
                 ),
               ],
               currentIndex: controller.navigatorValue,
-              onTap: (index) =>
-              {
+              onTap: (index) => {
                 controller.changeSelectedValue(index),
                 if (index == 1) {Get.to(ProfileView())},
                 if (index == 2) {Get.to(CartView())},
@@ -279,5 +276,4 @@ class HomeView extends StatelessWidget {
               },
             ));
   }
-
 }

@@ -12,7 +12,6 @@ class FireStoreUser {
         .set(userModel.toJson());
   }
 
-
   Future<void> updateUserToFireStore(UserModel userModel) async {
     return await _userCollectionReference
         .doc(userModel.userId)

@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -9,11 +8,4 @@ class ControlViewModel extends GetxController {
     _navigatorValue = selectedValue;
     update();
   }
-
-
 }
-
-
-
-
-

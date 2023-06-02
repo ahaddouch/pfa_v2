@@ -1,5 +1,5 @@
-
 import 'package:get/get.dart';
+import 'package:pfa_v2/core/view_model/cart_view_model.dart';
 import 'package:pfa_v2/core/view_model/control_view_model.dart';
 import 'package:pfa_v2/helper/local_storage_data.dart';
 import 'package:pfa_v2/view/home_view.dart';
@@ -14,5 +14,6 @@ class Binding extends Bindings {
     Get.lazyPut(() => ControlViewModel());
     Get.lazyPut(() => HomeViewModel());
     Get.lazyPut(() => LocalStorageData());
+    Get.lazyPut(() => CartViewModel());
   }
 }

@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +13,6 @@ import '../service/firestore_user.dart';
 class AuthViewModel extends GetxController {
   GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
   FirebaseAuth _auth = FirebaseAuth.instance;
-
 
   String email, password, name;
 
@@ -47,7 +45,7 @@ class AuthViewModel extends GetxController {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     print(googleUser);
     GoogleSignInAuthentication googleSignInAuthentication =
-    await googleUser.authentication;
+        await googleUser.authentication;
 
     final AuthCredential credential = GoogleAuthProvider.credential(
       idToken: googleSignInAuthentication.idToken,
@@ -58,12 +56,14 @@ class AuthViewModel extends GetxController {
       saveUser(user);
       Get.offAll(ControlView());
     });
-
   }
+
   void signInWithEmailAndPassword() async {
     try {
-      await _auth.signInWithEmailAndPassword(email: email, password: password).then((value)async{
-        await FireStoreUser().getCurrentUser(value.user.uid).then((value){
+      await _auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((value) async {
+        await FireStoreUser().getCurrentUser(value.user.uid).then((value) {
           setUser(UserModel.fromJson(value.data()));
         });
       });
@@ -74,20 +74,22 @@ class AuthViewModel extends GetxController {
           snackPosition: SnackPosition.BOTTOM);
     }
   }
+
   void signUpWithEmailAndPassword() async {
     try {
-      await _auth.createUserWithEmailAndPassword(
-          email: email, password: password).then((user){
+      await _auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((user) {
         saveUser(user);
       });
 
       Get.offAll(HomeView());
     } catch (e) {
-
       Get.snackbar("Error login account", e.message,
           snackPosition: SnackPosition.BOTTOM);
     }
   }
+
   void saveUser(UserCredential user) async {
     UserModel userModel = UserModel(
       userId: user.user.uid,
@@ -105,7 +107,7 @@ class AuthViewModel extends GetxController {
     // ));
   }
 
-  void setUser(UserModel userModel)async{
+  void setUser(UserModel userModel) async {
     localStorageData.setUser(userModel);
   }
 }

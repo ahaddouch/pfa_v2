@@ -10,7 +10,7 @@ class ControlView extends GetWidget<AuthViewModel> {
   Widget build(BuildContext context) {
     return Obx(() {
       return (Get.find<AuthViewModel>().user == null)
-             ? LoginView()
+          ? LoginView()
           : HomeView();
     });
   }

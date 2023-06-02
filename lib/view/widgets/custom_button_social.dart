@@ -31,10 +31,9 @@ class CustomButtonSocial extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
             Image.asset(
               imageName,
-              width: 24,  // Provide the desired width for the image
+              width: 24, // Provide the desired width for the image
               height: 24, // Provide the desired height for the image
             ),
             SizedBox(
@@ -42,11 +41,9 @@ class CustomButtonSocial extends StatelessWidget {
             ),
             Text(
               text,
-
               style: TextStyle(
                 fontSize: 16, // Adjust the font size as per your preference
                 fontWeight: FontWeight.bold,
-
               ),
             ),
           ],
@@ -55,10 +52,3 @@ class CustomButtonSocial extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-

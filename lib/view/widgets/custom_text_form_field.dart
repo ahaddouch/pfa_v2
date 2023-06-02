@@ -28,20 +28,15 @@ class CustomTextFormField extends StatelessWidget {
             fontSize: 14,
             color: Colors.grey.shade900,
           ),
-
           TextFormField(
-
             onSaved: onSave,
             validator: validator,
-
             decoration: InputDecoration(
               hintText: hint,
-
               hintStyle: TextStyle(
                 color: Colors.grey,
               ),
               fillColor: Colors.white,
-
             ),
           )
         ],
