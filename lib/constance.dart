@@ -7,4 +7,5 @@ final String columnName = 'name';
 final String columnImage = 'image';
 final String columnPrice = 'price';
 final String columnQuantity = 'quantity';
+final String columnProductId = 'productId';
 const CACHED_USER_DATA = 'CACHED_USER_DATA';

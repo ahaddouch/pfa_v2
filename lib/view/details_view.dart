@@ -142,6 +142,7 @@ class DetailsView extends StatelessWidget {
                       child: CustomButton(
                         onPress: controller.addProduct(
                           CartProductModel(
+                            productId: model.productId,
                             name: model.name,
                             image: model.image,
                             price: model.price,

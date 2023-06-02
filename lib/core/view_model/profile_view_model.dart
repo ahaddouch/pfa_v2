@@ -31,10 +31,13 @@ class ProfileViewModel extends GetxController {
     _loading.value = false;
     update();
   }
-
   Future<void> signOut() async {
-    GoogleSignIn().signOut();
-    FirebaseAuth.instance.signOut();
+    GoogleSignIn _googleSignIn = GoogleSignIn();
+    await _googleSignIn.signOut();
+    FirebaseAuth _auth = FirebaseAuth.instance;
+    await _auth.signOut();
     localStorageData.deleteUser();
   }
+
+
 }

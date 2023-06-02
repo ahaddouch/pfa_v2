@@ -2,8 +2,6 @@ import 'package:get/get.dart';
 import 'package:pfa_v2/core/view_model/cart_view_model.dart';
 import 'package:pfa_v2/core/view_model/control_view_model.dart';
 import 'package:pfa_v2/helper/local_storage_data.dart';
-import 'package:pfa_v2/view/home_view.dart';
-
 import '../core/view_model/auth_view_model.dart';
 import '../core/view_model/home_view_model.dart';
 

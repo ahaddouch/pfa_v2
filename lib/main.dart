@@ -5,11 +5,13 @@ import 'package:pfa_v2/view/auth/login_view.dart';
 import 'package:pfa_v2/view/control_view.dart';
 import 'package:pfa_v2/view/home_view.dart';
 
+import 'core/view_model/cart_view_model.dart';
 import 'helper/binding.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  Get.put(CartViewModel());
   runApp(MyApp());
 }
 
