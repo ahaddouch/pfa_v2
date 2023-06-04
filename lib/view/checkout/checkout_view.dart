@@ -11,14 +11,14 @@ class CheckOutView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CheckOutViewModel>(
+    return GetBuilder<CheckOutViewModel> (
       init: CheckOutViewModel(),
       builder: (controller) => Scaffold(
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.white,
           elevation: 0.0,
-          title: const Text(
+          title: Text(
             "Order Status",
             style: TextStyle(
               color: Colors.black,
@@ -33,14 +33,14 @@ class CheckOutView extends StatelessWidget {
                 theme: StatusChangeThemeData(
                   direction: Axis.horizontal,
                   connectorTheme:
-                  const ConnectorThemeData(space: 1.0, thickness: 1.0),
+                  ConnectorThemeData(space: 1.0, thickness: 1.0),
                 ),
                 builder: StatusChangeTileBuilder.connected(
                   itemWidth: (_) =>
                   MediaQuery.of(context).size.width / _processes.length,
                   nameWidgetBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.all(15.0),
+                      padding: EdgeInsets.all(15.0),
                       child: Text(
                         _processes[index],
                         style: TextStyle(
@@ -56,9 +56,9 @@ class CheckOutView extends StatelessWidget {
                         size: 35.0,
                         border: Border.all(color: Colors.teal, width: 1),
                         child: Padding(
-                          padding: const EdgeInsets.all(6.0),
+                          padding: EdgeInsets.all(6.0),
                           child: Container(
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.green,
                             ),
@@ -66,7 +66,7 @@ class CheckOutView extends StatelessWidget {
                         ),
                       );
                     } else {
-                      return const OutlinedDotIndicator(
+                      return OutlinedDotIndicator(
                         size: 30,
                         borderWidth: 1.0,
                         color: todoColor,
@@ -106,11 +106,11 @@ class CheckOutView extends StatelessWidget {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.skip_next),
           onPressed: () {
               controller.changeIndex(controller.index + 1 );
             },
           backgroundColor: inProgressColor,
+          child: Icon(Icons.skip_next),
         ),
       ),
     );

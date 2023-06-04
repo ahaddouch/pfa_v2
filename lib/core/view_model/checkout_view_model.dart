@@ -1,7 +1,6 @@
 import 'package:flutter/Material.dart';
 import 'package:get/get.dart';
 import 'package:pfa_v2/view/control_view.dart';
-
 import '../../constance.dart';
 
 class CheckOutViewModel extends GetxController{
@@ -29,10 +28,10 @@ class CheckOutViewModel extends GetxController{
   Color getColor(int i) {
     if (i == _index) {
       return inProgressColor;
-    } else if (i < _index) {
-      return Colors.green;
-    } else {
-      return todoColor;
     }
+    else if (i < _index) {
+      return Colors.green;
+    }
+    return todoColor;
   }
 }
