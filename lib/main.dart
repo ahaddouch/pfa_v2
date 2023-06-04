@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:pfa_v2/view/auth/login_view.dart';
 import 'package:pfa_v2/view/control_view.dart';
 import 'package:pfa_v2/view/home_view.dart';
-
 import 'core/view_model/cart_view_model.dart';
 import 'helper/binding.dart';
 

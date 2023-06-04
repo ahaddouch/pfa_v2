@@ -127,7 +127,7 @@ class DetailsView extends StatelessWidget {
                         color: Colors.grey,
                       ),
                       CustomText(
-                        text: '\$' + model.price,
+                        text: '\$ ' + model.price,
                         color: primaryColor,
                         fontSize: 18,
                       ),

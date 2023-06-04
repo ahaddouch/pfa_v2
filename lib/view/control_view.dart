@@ -6,6 +6,7 @@ import 'auth/login_view.dart';
 import 'home_view.dart';
 
 class ControlView extends GetWidget<AuthViewModel> {
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {

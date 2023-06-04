@@ -38,7 +38,6 @@ class HomeViewModel extends GetxController {
         _productModel.add(ProductModel.fromJson(value[i].data()));
         _loading.value = false;
       }
-      print(_productModel.length);
       update();
     });
   }
